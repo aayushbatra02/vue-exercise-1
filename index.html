@@ -1,11 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <p><span class="title">Name:</span> {{name}}</p>
+      <p><span class="title">Address:</span> {{address}}</p>
+      <p><span class="title">Name:</span>DOB: {{dob}}</p>
+      <button @click="getAge">Calculate Age</button>
+      <p v-if="age"><span class="title">Age:</span>{{age}}</p>
+      <button v-if="age" @click="validateAge">Validate Age</button>
+      <p v-if="isValid && age" class="success">You Are Ok</p>
+      <p v-if="isValid === false && age" class="error">You Are Underage</p>
+      <ul id="users">
+        <li v-for="user in users">
+          <img :src="user.imageUrl" style="width: 5rem; height: 5rem" />
+          <p><span class="title">Name:</span> {{user.name}}</p>
+          <p><span class="title">Age:</span> {{user.age}}</p>
+        </li>
+      </ul>
+    </div>
+
+    <script type="module">
+      const app = Vue.createApp({
+        data() {
+          return {
+            name: "John",
+            address: "145 Oak Street, Springfield, IL 62701, United States",
+            dob: "2008-06-29",
+            age: false,
+            isValid: undefined,
+            users: [
+              { name: `rahul`, age: 24, imageUrl: "./images/image1.jpeg" },
+              { name: `rohit`, age: 20, imageUrl: "./images/image2.jpeg" },
+              { name: `jack`, age: 18, imageUrl: "./images/image3.jpeg" },
+            ],
+          };
+        },
+        methods: {
+          getAge() {
+            const age = Math.floor(
+              (new Date() - new Date(this.dob).getTime()) / 3.15576e10
+            );
+            this.age = age;
+          },
+          validateAge() {
+
+            this.isValid = this.age < 18 ? false : true;
+          },
+        },
+        computed:{
+
+        }
+      });
+
+      app.mount("#app");
+    </script>
+
+    <style>
+      #app {
+        width: fit-content;
+        margin: auto;
+        margin-top: 5rem;
+      }
+      .error {
+        color: red;
+      }
+
+      .success {
+        color: green;
+      }
+
+      .title {
+        font-weight: 700;
+        margin-right: 0.5rem;
+        font-size: 1.2rem;
+      }
+
+      button {
+        background: none;
+        border: 1px solid black;
+        padding: 0.3rem 0.6rem;
+        border-radius: 0.3rem;
+        cursor: pointer;
+      }
+
+      ul {
+        list-style: none;
+        display: flex;
+        gap: 3rem;
+        padding: 0;
+        margin-top: 2rem;
+      }
+
+      img {
+        border-radius: 50%;
+      }
+    </style>
+  </body>
 </html>
