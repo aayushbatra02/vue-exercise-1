@@ -1,11 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p><span class="title">Name:</span> {{name}}</p>
+      <p><span class="title">Address:</span> {{address}}</p>
+      <p><span class="title">DOB:</span> {{dob}}</p>
+      <button @click="getAge">Calculate Age</button>
+      <div v-show="age">
+        <p><span class="title">Age:</span>{{age}}</p>
+        <button @click="validateAge">Validate Age</button>
+      </div>
+      <div v-show="showValidationText">
+        <p v-if="isValid" class="success">You Are Ok</p>
+        <p v-else class="error">You Are Underage</p>
+      </div>
+      <ul id="users">
+        <li v-for="user in users">
+          <img :src="user.imageUrl" />
+          <p><span class="title">Name:</span> {{user.name}}</p>
+          <p><span class="title">Age:</span> {{user.age}}</p>
+        </li>
+      </ul>
+    </div>
+
+    <script type="module" src="main.js"></script>
+  </body>
 </html>
