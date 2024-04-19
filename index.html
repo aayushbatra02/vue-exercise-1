@@ -12,8 +12,10 @@
       <p><span class="title">Address:</span> {{address}}</p>
       <p><span class="title">Name:</span>DOB: {{dob}}</p>
       <button @click="getAge">Calculate Age</button>
-      <p v-if="age"><span class="title">Age:</span>{{age}}</p>
-      <button v-if="age" @click="validateAge">Validate Age</button>
+      <div v-if="age">
+        <p><span class="title">Age:</span>{{age}}</p>
+        <button @click="validateAge">Validate Age</button>
+      </div>
       <div v-if="showValidationText">
         <p v-if="isValid" class="success">You Are Ok</p>
         <p v-else class="error">You Are Underage</p>
