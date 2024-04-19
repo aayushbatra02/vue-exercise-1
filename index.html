@@ -4,15 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   </head>
   <body>
     <div id="app">
       <p><span class="title">Name:</span> {{name}}</p>
       <p><span class="title">Address:</span> {{address}}</p>
-      <p><span class="title">Name:</span>DOB: {{dob}}</p>
+      <p><span class="title">DOB:</span> {{dob}}</p>
       <button @click="getAge">Calculate Age</button>
-      <div v-if="age">
+      <div v-show="age">
         <p><span class="title">Age:</span>{{age}}</p>
         <button @click="validateAge">Validate Age</button>
       </div>
@@ -22,93 +23,13 @@
       </div>
       <ul id="users">
         <li v-for="user in users">
-          <img :src="user.imageUrl" style="width: 5rem; height: 5rem" />
+          <img :src="user.imageUrl" />
           <p><span class="title">Name:</span> {{user.name}}</p>
           <p><span class="title">Age:</span> {{user.age}}</p>
         </li>
       </ul>
     </div>
 
-    <script type="module">
-      const app = Vue.createApp({
-        data() {
-          return {
-            name: "John",
-            address: "145 Oak Street, Springfield, IL 62701, United States",
-            dob: "2002-06-29",
-            age: null,
-            isValid: false,
-            showValidationText: false,
-            users: [
-              { name: `rahul`, age: 24, imageUrl: "./images/image1.jpeg" },
-              { name: `rohit`, age: 20, imageUrl: "./images/image2.jpeg" },
-              { name: `jack`, age: 18, imageUrl: "./images/image3.jpeg" },
-            ],
-          };
-        },
-        methods: {
-          getAge() {
-            const age = Math.floor(
-              (new Date() - new Date(this.dob).getTime()) / 3.15576e10
-            );
-            this.age = age;
-          },
-          validateAge() {
-            this.showValidationText = true;
-            this.isValid = this.age < 18 ? false : true;
-          },
-        },
-      });
-
-      app.mount("#app");
-    </script>
-
-    <style>
-      #app {
-        width: fit-content;
-        margin: auto;
-        margin-top: 5rem;
-      }
-
-      .error {
-        color: red;
-      }
-
-      .success {
-        color: green;
-      }
-
-      .title {
-        font-weight: 700;
-        margin-right: 0.5rem;
-        font-size: 1.2rem;
-      }
-
-      button {
-        background: none;
-        border: 1px solid black;
-        padding: 0.3rem 0.6rem;
-        border-radius: 0.3rem;
-        cursor: pointer;
-      }
-
-      button:hover {
-        background-color: black;
-        color: white;
-      }
-
-      ul {
-        list-style: none;
-        display: flex;
-        gap: 3rem;
-        padding: 0;
-        margin-top: 2rem;
-      }
-
-      img {
-        border-radius: 50%;
-        object-fit: cover;
-      }
-    </style>
+    <script type="module" src="main.js"></script>
   </body>
 </html>
