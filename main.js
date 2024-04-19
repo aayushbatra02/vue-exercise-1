@@ -8,9 +8,9 @@ const app = Vue.createApp({
       isValid: false,
       showValidationText: false,
       users: [
-        { name: `rahul`, age: 24, imageUrl: "./images/image1.jpeg" },
-        { name: `rohit`, age: 20, imageUrl: "./images/image2.jpeg" },
-        { name: `jack`, age: 18, imageUrl: "./images/image3.jpeg" },
+        { name: `Rahul`, age: 24, imageUrl: "./images/image1.jpeg" },
+        { name: `Rohit`, age: 20, imageUrl: "./images/image2.jpeg" },
+        { name: `Jack`, age: 18, imageUrl: "./images/image3.jpeg" },
       ],
     };
   },
